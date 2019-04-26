@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- Database connection settings -->
+		<property name="connection.driver_class">org.postgresql.Driver</property>
+		<property name="connection.url">jdbc:postgresql://10.21.178.2:5432/hibernate</property>
+		<property name="connection.user">postgres</property>
+		<property name="connection.password">postgres</property>
+		<property name="connection.pool_size">100</property>
+		<property name="generate_statistics">true</property>
+		<!-- SQL dialect -->
+		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+		<!-- Enable Hibernate's automatic session context management -->
+		<property name="current_session_context_class">thread</property>
+
+		<!-- Disable the second-level cache -->
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+		<!-- Show all executed SQL to stdout -->
+		<property name="show_sql">true</property>
+
+		<!-- Drop and re-create the database schema on startup -->
+		  <property name="hbm2ddl.auto">update</property>  
+		
+		<!-- <mapping resource="Robot.hbm.xml" /> -->
+		<mapping class="com.skbh.pojo.Robot"/>
+		<mapping class="com.skbh.pojo.Item"/>
+		<mapping class="com.skbh.pojo.PurchaseOrder"/>
+		<mapping class="com.skbh.pojo.WebserviceResourceAccessLog"/>
+		<!-- <mapping class="com.skbh.pojo.KeyByteArray"/> -->
+		<mapping class="com.skbh.pojo.Department"/>
+		<mapping class="com.skbh.pojo.Employee"/>
+		
+		
+	</session-factory>
+</hibernate-configuration>
