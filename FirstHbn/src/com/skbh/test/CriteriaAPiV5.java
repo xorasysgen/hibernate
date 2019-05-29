@@ -57,6 +57,7 @@ public class CriteriaAPiV5 {
         Query<Long> query4 = session.createQuery(criteriaQuery4);
         long distinct = query4.getSingleResult();
         System.out.println("Distinct count = " + distinct);
+        
 	}
 	catch(HibernateException he) {
 		System.out.println(he);
@@ -156,9 +157,11 @@ public class CriteriaAPiV5 {
 		//CriteriaAPiV5.saveDepartment();
 		//CriteriaAPiV5.getEmployee();
 		//CriteriaAPiV5.getfewData();
-		CriteriaAPiV5.functionTest();
+		//CriteriaAPiV5.functionTest();
 		
 
 	}
+
+	
 
 }

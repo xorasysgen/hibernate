@@ -12,18 +12,13 @@ public class GetObjects {
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Robot robot = new Robot();
-		//Robot robot1 = (Robot) session.get(Robot.class, 1);
-	
-		robot.setRobotName("Robot India");
-		robot.setRobotPrice(256986.0);
-		session.save(robot);
+		Robot robot1 = (Robot) session.load(Robot.class, 20);
+		System.out.println(robot1.getClass().getName());
 		session.getTransaction().commit();
 		session.close();
-		System.out.println("Robot name : " + robot.getRobotName());
-		System.out.println("robot price : " + robot.getRobotPrice());
-		System.out.println("Robot class name: " + robot.getClass());
+		System.out.println(robot1.getRobotName());
 		sessionFactory.close();
+		
 	}
 
 	/*
