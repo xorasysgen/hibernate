@@ -104,7 +104,7 @@ public class OrderProcessingSystem {
 		SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
 		Session session=sessionFactory.openSession();
 		Item i=new Item();
-		List<Item> items= new ArrayList<>();
+		List<Item> items= new ArrayList<Item>();
 		PurchaseOrder order=new PurchaseOrder();
 		i.setItemName("Pen");
 		i.setQuantity(5);

@@ -20,7 +20,7 @@ public class Department {
 	private String name;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
-	private List<Employee> employees = new ArrayList<>();
+	private List<Employee> employees = new ArrayList<Employee>();
 
 	public long getId() {
 		return id;

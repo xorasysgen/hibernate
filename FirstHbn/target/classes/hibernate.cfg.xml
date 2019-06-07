@@ -35,6 +35,7 @@
 		<!-- <mapping class="com.skbh.pojo.KeyByteArray"/> -->
 		<mapping class="com.skbh.pojo.Department"/>
 		<mapping class="com.skbh.pojo.Employee"/>
+		<mapping class="com.skbh.pojo.Event"/>
 		
 		
 	</session-factory>
