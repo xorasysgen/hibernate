@@ -1,5 +1,6 @@
 package com.skbh.test;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -8,17 +9,31 @@ import com.skbh.pojo.Robot;
 
 public class GetObjects {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Robot robot1 = (Robot) session.load(Robot.class, 20);
+		try {
+		Robot robot1 = (Robot) session.load(Robot.class, 4);
 		System.out.println(robot1.getClass().getName());
+		//Thread.currentThread().sleep(30000);
+		robot1.setRobotName("One kuka4");
+		session.beginTransaction();
+		session.update(robot1);
 		session.getTransaction().commit();
 		session.close();
-		System.out.println(robot1.getRobotName());
+		System.out.println("sdfsdfsd" + robot1.getRobotName());
+		System.out.println(robot1.getRobotPrice());
+	}
+	catch(HibernateException he) {
+		System.out.println(he.getMessage());
+		
+	}finally {
+		if(session.isOpen()) {
+			session.close();
+		}
 		sessionFactory.close();
 		
+	}
 	}
 
 	/*

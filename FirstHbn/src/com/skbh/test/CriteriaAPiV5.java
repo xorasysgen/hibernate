@@ -9,6 +9,7 @@ import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
@@ -126,6 +127,7 @@ public class CriteriaAPiV5 {
 		SessionFactory sessionFactory= new Configuration().configure().buildSessionFactory();
 		Session session=sessionFactory.openSession();
 		Department d=new Department();
+		d.setName("IT Department");
 		Employee e=new Employee();
 		e.setName("susanta Kumar pradhan");e.setDesignation("Sr consultant");e.setSalary(60000);e.setDepartment(d);
 		
@@ -134,7 +136,6 @@ public class CriteriaAPiV5 {
 		
 		Employee e2=new Employee();
 		e2.setName("Dinesh singh");e2.setDesignation("Sale head");e2.setSalary(196000);e2.setDepartment(d);
-		d.setName("Managment Department");
 		
 		d.getEmployees().add(e);
 		d.getEmployees().add(e1);
@@ -154,11 +155,58 @@ public class CriteriaAPiV5 {
 	}
 	
 	
+	
+	
+	private static void deleteEmployee() {
+		SessionFactory sessionFactory= new Configuration().configure().buildSessionFactory();
+		Session session=sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		Employee e1=session.get(Employee.class,new Long(1));
+		try{
+		session.delete(e1);
+		tx.commit();
+		}
+	
+		catch(HibernateException he) {
+			System.out.println(he);
+		}
+		finally{
+			session.close();
+			sessionFactory.close();
+		}
+		
+		
+	}
+	
+	
+	private static void deleteDepartment() {
+		SessionFactory sessionFactory= new Configuration().configure().buildSessionFactory();
+		Session session=sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		Department e1=session.get(Department.class,new Long(1));
+		try{
+		session.delete(e1);
+		tx.commit();
+		}
+	
+		catch(HibernateException he) {
+			System.out.println(he);
+		}
+		finally{
+			session.close();
+			sessionFactory.close();
+		}
+		
+		
+	}
+	
 	public static void main(String[] args) {
-		//CriteriaAPiV5.saveDepartment();
+		CriteriaAPiV5.saveDepartment();
 		//CriteriaAPiV5.getEmployee();
 		//CriteriaAPiV5.getfewData();
 		//CriteriaAPiV5.functionTest();
+		//CriteriaAPiV5.deleteEmployee();
+		//CriteriaAPiV5.deleteDepartment();
 		
 
 	}

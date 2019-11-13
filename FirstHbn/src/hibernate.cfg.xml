@@ -7,7 +7,7 @@
 
 		<!-- Database connection settings -->
 		<property name="connection.driver_class">org.postgresql.Driver</property>
-		<property name="connection.url">jdbc:postgresql://10.21.178.2:5432/hibernate</property>
+		<property name="connection.url">jdbc:postgresql://localhost:5432/hibernate</property>
 		<property name="connection.user">postgres</property>
 		<property name="connection.password">postgres</property>
 		<property name="connection.pool_size">100</property>
@@ -27,15 +27,11 @@
 		<!-- Drop and re-create the database schema on startup -->
 		  <property name="hbm2ddl.auto">update</property>  
 		
-		<!-- <mapping resource="Robot.hbm.xml" /> -->
-		<mapping class="com.skbh.pojo.Robot"/>
-		<mapping class="com.skbh.pojo.Item"/>
-		<mapping class="com.skbh.pojo.PurchaseOrder"/>
-		<mapping class="com.skbh.pojo.WebserviceResourceAccessLog"/>
+		<!-- <mapping resource="Robot.hbm.xml" />  -->
 		<!-- <mapping class="com.skbh.pojo.KeyByteArray"/> -->
+		<mapping class="com.skbh.pojo.Robot"/>
 		<mapping class="com.skbh.pojo.Department"/>
 		<mapping class="com.skbh.pojo.Employee"/>
-		<mapping class="com.skbh.pojo.Event"/>
 		
 		
 	</session-factory>

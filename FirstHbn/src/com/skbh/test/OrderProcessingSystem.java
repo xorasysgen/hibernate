@@ -27,8 +27,9 @@ public class OrderProcessingSystem {
 	public static void main(String[] args) {
 		//new OrderProcessingSystem().getNPlus1ListOfOrderByCriteria(); //  N + 1 problem
 		//new OrderProcessingSystem().getListOfOrder();// by join fetch
-		new OrderProcessingSystem().getListOfOrderByCriteria();// by criteria api 
+		//new OrderProcessingSystem().getListOfOrderByCriteria();// by criteria api 
 		//new OrderProcessingSystem().savePurchageOrder();
+		new OrderProcessingSystem().deletePurchageOrder();
 	/*try {
 			new OrderProcessingSystem().OrderUpdate(5);
 		} catch (InterruptedException exceptionObject) {
@@ -37,10 +38,24 @@ public class OrderProcessingSystem {
 		}*/
 		//new OrderProcessingSystem().QueryOrder(5);
 		
-		new OrderProcessingSystem().AuditedReader();
+		//new OrderProcessingSystem().AuditedReader();
 		
 	}
 	
+	private void deletePurchageOrder() {
+		SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
+		Session session=sessionFactory.openSession();
+		
+		Transaction tx=session.beginTransaction();
+		PurchaseOrder purchaseOrder=new PurchaseOrder();
+		purchaseOrder.setId(1);
+		session.delete(purchaseOrder);
+		tx.commit();
+		session.close();
+		sessionFactory.close();
+		
+	}
+
 	private void getNPlus1ListOfOrderByCriteria() {
 		SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
 		Session session=sessionFactory.openSession();

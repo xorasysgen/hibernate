@@ -89,11 +89,15 @@
       <scope>compile</scope>
     </dependency>
 
+<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 <dependency>
-	<groupId>postgresql</groupId>
-	<artifactId>postgresql</artifactId>
-	<version>9.1-901-1.jdbc4</version>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>42.2.8</version>
 </dependency>
+
+
+
 
 <dependency>
 	<groupId>info.debatty</groupId>

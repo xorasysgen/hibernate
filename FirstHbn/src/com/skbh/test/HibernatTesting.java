@@ -1,6 +1,7 @@
 package com.skbh.test;
 
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -14,14 +15,17 @@ public class HibernatTesting {
 		SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
 		Session session=sessionFactory.openSession();
 		Transaction tx=session.beginTransaction();
-		Robot robot=session.get(Robot.class, 1);
-		//Robot robot=new Robot(1,"Roboat name",989899.00);
-		robot.setRobotName("Cisco RB");
-		robot.setRobotPrice(25000d);
+		try {
+		//Robot robot1=session.get(Robot.class, 1);
+		Robot robot=new Robot();
+		robot.setRobotName("china Roobo");
+		robot.setRobotPrice(9000d);
+		session.save(robot);
+		System.out.println(robot);
 		//session.clear();
 		//robot.setRobotPrice(256966.0);
-		session.update(robot);
-		session.evict(robot);// REMOVE FROM SESSION CACHE
+		//session.update(robot);
+		//session.evict(robot);// REMOVE FROM SESSION CACHE
 /*		robot.setRobotName("Mr Cisco");
 		robot.setRobotPrice(0d);
 */		//Robot robot1=(Robot) session.merge(robot);
@@ -29,8 +33,16 @@ public class HibernatTesting {
 		System.out.println("robot price : " + robot.getRobotPrice());
 	
 		tx.commit();
-		session.close();
-		sessionFactory.close();
+		}
+		catch(HibernateException he) {
+			he.getStackTrace();
+			
+		}finally {
+			session.close();
+			sessionFactory.close();
+			
+		}
+		
 		
 	}
 
